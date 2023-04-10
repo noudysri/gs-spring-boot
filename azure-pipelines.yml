@@ -16,7 +16,7 @@
 
 # #  # Agent VM image name
 
-#   vmImageName: 'ubuntu-latest'
+vmImageName: 'ubuntu-latest'
 trigger: none
 pr: none
 
