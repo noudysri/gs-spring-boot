@@ -11,38 +11,39 @@ trigger:
 #   # Azure Resource Manager connection created during pipeline creation
 #   azureSubscription: '4c8e7db9-7472-409e-8b5a-49c63cab73e1'
   
-  # Web app name
-  webAppName: 'java-spring-boot'
+#   # Web app name
+#   webAppName: 'java-spring-boot'
 
-  # Agent VM image name
+#  # Agent VM image name
+
   vmImageName: 'ubuntu-latest'
 
 stages:
-- stage: Build
-  displayName: Build stage
-  jobs:
-  - job: MavenPackageAndPublishArtifacts
-    displayName: Maven Package and Publish Artifacts
-    pool:
-      vmImage: $(vmImageName)
-    
-    steps:
-    - task: Maven@3
-      displayName: 'Maven Package'
-      inputs:
-        mavenPomFile: 'app/pom.xml'
+  - stage: Build
+    displayName: Build stage
+    jobs:
+    - job: MavenPackageAndPublishArtifacts
+      displayName: Maven Package and Publish Artifacts
+      pool:
+        vmImage: $(vmImageName)
+      
+      steps:
+      - task: Maven@3
+        displayName: 'Maven Package'
+        inputs:
+          mavenPomFile: 'app/pom.xml'
 
-    - task: CopyFiles@2
-      displayName: 'Copy Files to artifact staging directory'
-      inputs:
-        SourceFolder: '$(System.DefaultWorkingDirectory)'
-        Contents: '**/target/*.?(war|jar)'
-        TargetFolder: $(Build.ArtifactStagingDirectory)
+      - task: CopyFiles@2
+        displayName: 'Copy Files to artifact staging directory'
+        inputs:
+          SourceFolder: '$(System.DefaultWorkingDirectory)'
+          Contents: '**/target/*.?(war|jar)'
+          TargetFolder: $(Build.ArtifactStagingDirectory)
 
-    - task: PublishPipelineArtifact@0
-      displayName: 'Publish pipeline artifacts'
-      inputs:
-        targetPath: $(Build.ArtifactStagingDirectory)
+      - task: PublishPipelineArtifact@0
+        displayName: 'Publish pipeline artifacts'
+        inputs:
+          targetPath: $(Build.ArtifactStagingDirectory)
 
 # - stage: Deploy
 #   displayName: Deploy stage
