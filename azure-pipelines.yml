@@ -20,8 +20,6 @@
 
 trigger: none
 pr: none
- 
-pool: any
 
 stages:
   - stage: Build
