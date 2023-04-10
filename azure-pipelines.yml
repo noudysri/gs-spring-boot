@@ -35,7 +35,6 @@ stages:
         displayName: 'Maven Package'
         inputs:
           mavenPomFile: 'app/pom.xml'
-          goals: 'install'
           publishJUnitResults: true
           testResultsFiles: '**/surefire-reports/TEST-*.xml'
           javaHomeOption: 'JDKVersion'
