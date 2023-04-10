@@ -16,9 +16,12 @@
 
 # #  # Agent VM image name
 
-vmImageName: 'ubuntu-latest'
+
+
 trigger: none
 pr: none
+ 
+pool:any
 
 stages:
   - stage: Build
@@ -26,8 +29,8 @@ stages:
     jobs:
     - job: MavenPackageAndPublishArtifacts
       displayName: Maven Package and Publish Artifacts
-      pool:
-        vmImage: $(vmImageName)
+      # pool:
+      #   vmImage: $(vmImageName)
       
       steps:
       - task: Maven@3
