@@ -23,14 +23,14 @@ pr: none
 variables:
     - group: testvariable
     - name: my-passed-variable
-      value: $[variables.username]
-# stages:
-#   - stage: Build
-#     displayName: Build stage
-#     jobs:
-#     - job: testendeavour
-steps:
-- script: echo $(username)
+      value: $[variables.usename]
+stages:
+  - stage: Build
+    displayName: Build stage
+    jobs:
+    - job: testendeavour
+      steps:
+      - script: echo $(usename)
       
       # - task: Maven@3
       #   displayName: 'Maven Package'
