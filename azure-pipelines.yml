@@ -24,6 +24,9 @@ variables:
     - group: testvariable
     - name: my-passed-variable
       value: $[variables.usename]
+    - name: my-password
+      value: $[variables.password]
+
 # stages:
 #   - stage: Build
 #     displayName: Build stage
@@ -31,7 +34,7 @@ variables:
 #     - job: testendeavour
 steps:
 - script: echo $(usename)
-      
+- script: echo $(password)    
       # - task: Maven@3
       #   displayName: 'Maven Package'
       #   inputs:
